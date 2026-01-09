@@ -25,7 +25,7 @@ function Cart({ isOpen, onClose }) {
         </div>
 
         {/* Cart Items */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-6 pt-12">
           {cart.length === 0 ? (
             <div className="text-center text-gray-500 mt-10">
               <p className="text-lg">Your cart is empty</p>
