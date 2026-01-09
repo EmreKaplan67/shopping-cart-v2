@@ -29,9 +29,9 @@ function Navbar({ isCartOpen, setIsCartOpen }) {
     ]
 
     return (
-        <nav className="bg-white shadow-md rounded-lg p-6 mb-6">
+        <nav className="bg-white shadow-md rounded-lg p-4 mb-6 sticky top-0 z-20">
                 {/* Header with Search Bar and Cart */}
-                <div className="flex items-center justify-between mb-6 gap-4">
+                <div className="flex items-center justify-between mb-4 gap-4">
                     <SearchBar />
                     
                     {/* Cart Button */}
@@ -48,43 +48,46 @@ function Navbar({ isCartOpen, setIsCartOpen }) {
                     </button>
                 </div>
 
-            {/* Categories */}
-            <div className="mb-6">
-                <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">Categories</h3>
-                <div className="flex flex-wrap gap-2">
-                    {categories.map((cat) => (
-                        <button 
-                            key={cat} 
-                            onClick={() => setCategory(cat)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 capitalize ${
-                                category === cat 
-                                    ? 'bg-blue-600 text-white shadow-md' 
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }`}
-                        >
-                            {cat}
-                        </button>
-                    ))}
+            {/* Categories and Sort in one row */}
+            <div className="flex items-center gap-6 flex-wrap">
+                {/* Categories */}
+                <div className="flex items-center gap-2">
+                    <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wide whitespace-nowrap">Categories:</h3>
+                    <div className="flex flex-wrap gap-2">
+                        {categories.map((cat) => (
+                            <button 
+                                key={cat} 
+                                onClick={() => setCategory(cat)}
+                                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 capitalize ${
+                                    category === cat 
+                                        ? 'bg-blue-600 text-white shadow-md' 
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                }`}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-            </div>
 
-            {/* Sort Options */}
-            <div>
-                <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">Sort By</h3>
-                <div className="flex flex-wrap gap-2">
-                    {sortOptions.map((option) => (
-                        <button 
-                            key={option.value} 
-                            onClick={() => setSortOrder(option.value)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                                sortOrder === option.value 
-                                    ? 'bg-blue-600 text-white shadow-md' 
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }`}
-                        >
-                            {option.label}
-                        </button>
-                    ))}
+                {/* Sort Options */}
+                <div className="flex items-center gap-2">
+                    <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wide whitespace-nowrap">Sort:</h3>
+                    <div className="flex flex-wrap gap-2">
+                        {sortOptions.map((option) => (
+                            <button 
+                                key={option.value} 
+                                onClick={() => setSortOrder(option.value)}
+                                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                                    sortOrder === option.value 
+                                        ? 'bg-blue-600 text-white shadow-md' 
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                }`}
+                            >
+                                {option.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         </nav>
