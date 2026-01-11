@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useProductStore } from '../store/useProductStore';
 import SearchBar from './SearchBar';
 
 function Navbar({ isCartOpen, setIsCartOpen }) {
     console.log('Navbar rendered')
+    
+    const [showFilters, setShowFilters] = useState(false);
     
     const category = useProductStore((state) => state.category);
     const sortOrder = useProductStore((state) => state.sortOrder);
@@ -48,12 +50,53 @@ function Navbar({ isCartOpen, setIsCartOpen }) {
                     </button>
                 </div>
 
-            {/* Categories and Sort in one row */}
-            <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+            {/* Mobile: Filters Toggle Button */}
+            <button
+                onClick={() => setShowFilters(!showFilters)}
+                className="md:hidden w-full px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-between"
+            >
+                <span>Filters & Sort</span>
+                <span className="text-lg">{showFilters ? '▲' : '▼'}</span>
+            </button>
+
+            {/* Mobile: Collapsible Dropdowns */}
+            <div className={`md:hidden ${showFilters ? 'block' : 'hidden'} space-y-3 mt-3`}>
+                {/* Category Dropdown */}
+                <div>
+                    <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">Category:</label>
+                    <select
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 capitalize"
+                    >
+                        {categories.map((cat) => (
+                            <option key={cat} value={cat} className="capitalize">{cat}</option>
+                        ))}
+                    </select>
+                </div>
+
+                {/* Sort Dropdown */}
+                <div>
+                    <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">Sort By:</label>
+                    <select
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="">Default</option>
+                        {sortOptions.map((option) => (
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+
+            {/* Desktop: Button Layout */}
+            <div className="hidden md:flex md:items-center gap-6">
                 {/* Categories */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <div className="flex items-center gap-2">
                     <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wide whitespace-nowrap">Categories:</h3>
-                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                    <div className="flex flex-wrap gap-2">
                         {categories.map((cat) => (
                             <button 
                                 key={cat} 
@@ -71,9 +114,9 @@ function Navbar({ isCartOpen, setIsCartOpen }) {
                 </div>
 
                 {/* Sort Options */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <div className="flex items-center gap-2">
                     <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wide whitespace-nowrap">Sort:</h3>
-                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                    <div className="flex flex-wrap gap-2">
                         {sortOptions.map((option) => (
                             <button 
                                 key={option.value} 
