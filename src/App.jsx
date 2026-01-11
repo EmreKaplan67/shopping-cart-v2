@@ -36,22 +36,22 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
-      <div className="flex flex-1">
-        <div className={`flex-1 transition-all duration-300 ${isCartOpen ? 'mr-[448px]' : ''}`}>
+      <div className="flex flex-1 relative">
+        <div className={`flex-1 transition-all duration-300 px-2 md:px-0 ${isCartOpen ? 'md:mr-[448px]' : ''}`}>
           {data.length === 0 ? (
             <div>No items found for "{searchTerm}"</div>
           ) : (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4 mt-4">
+            <div className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-3 md:gap-4 mt-4">
               {data.map((product) => (
                 <ItemCard key={product.id} product={product} />
               ))}
             </div>
           )}
         </div>
-        
-        {/* Cart Sidebar - Fixed on right */}
-        {isCartOpen && <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />}
       </div>
+      
+      {/* Cart Sidebar - Fixed on right, outside main flex container on mobile */}
+      {isCartOpen && <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />}
     </div>
   )
 }

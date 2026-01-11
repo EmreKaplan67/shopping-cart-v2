@@ -12,10 +12,10 @@ function Cart({ isOpen, onClose }) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed right-0 top-0 w-full max-w-sm bg-white border-l border-gray-300 shadow-lg flex flex-col h-screen z-10">
+    <div className="fixed right-0 top-0 w-full md:max-w-sm bg-white md:border-l border-gray-300 shadow-lg flex flex-col h-screen z-30">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-2xl font-bold">Shopping Cart</h2>
+        <div className="flex items-center justify-between p-4 md:p-6 border-b">
+          <h2 className="text-xl md:text-2xl font-bold">Shopping Cart</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
@@ -25,7 +25,7 @@ function Cart({ isOpen, onClose }) {
         </div>
 
         {/* Cart Items */}
-        <div className="flex-1 overflow-y-auto p-6 pt-12">
+        <div className="flex-1 overflow-y-auto p-4 md:p-6 pt-8 md:pt-12">
           {cart.length === 0 ? (
             <div className="text-center text-gray-500 mt-10">
               <p className="text-lg">Your cart is empty</p>
@@ -36,12 +36,12 @@ function Cart({ isOpen, onClose }) {
               {cart.map((item) => (
                 <div
                   key={item.product.id}
-                  className="flex gap-4 p-4 border rounded-lg"
+                  className="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg"
                 >
                   <img
                     src={item.product.image}
                     alt={item.product.title}
-                    className="w-20 h-20 object-contain"
+                    className="w-16 md:w-20 h-16 md:h-20 object-contain shrink-0"
                   />
                   <div className="flex-1">
                     <h3 className="font-semibold text-sm line-clamp-2">
@@ -84,7 +84,7 @@ function Cart({ isOpen, onClose }) {
 
         {/* Footer */}
         {cart.length > 0 && (
-          <div className="border-t p-6 space-y-4">
+          <div className="border-t p-4 md:p-6 space-y-3 md:space-y-4">
             <div className="flex justify-between text-lg">
               <span className="font-semibold">Total Items:</span>
               <span className="font-bold">{totalItems}</span>

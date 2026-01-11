@@ -29,15 +29,15 @@ function Navbar({ isCartOpen, setIsCartOpen }) {
     ]
 
     return (
-        <nav className="bg-white shadow-md rounded-lg p-4 mb-6 sticky top-0 z-20">
+        <nav className="bg-white shadow-md rounded-lg p-3 md:p-4 mb-4 md:mb-6 sticky top-0 z-20">
                 {/* Header with Search Bar and Cart */}
-                <div className="flex items-center justify-between mb-4 gap-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-3 md:mb-4 gap-3 md:gap-4">
                     <SearchBar />
                     
                     {/* Cart Button */}
                     <button
                         onClick={() => setIsCartOpen(!isCartOpen)}
-                        className="relative flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
+                        className="relative flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
                     >
                         <span>🛒 Cart</span>
                         {cartItemCount > 0 && (
@@ -49,11 +49,11 @@ function Navbar({ isCartOpen, setIsCartOpen }) {
                 </div>
 
             {/* Categories and Sort in one row */}
-            <div className="flex items-center gap-6 flex-wrap">
+            <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
                 {/* Categories */}
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                     <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wide whitespace-nowrap">Categories:</h3>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                         {categories.map((cat) => (
                             <button 
                                 key={cat} 
@@ -71,9 +71,9 @@ function Navbar({ isCartOpen, setIsCartOpen }) {
                 </div>
 
                 {/* Sort Options */}
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                     <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wide whitespace-nowrap">Sort:</h3>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                         {sortOptions.map((option) => (
                             <button 
                                 key={option.value} 

@@ -11,16 +11,16 @@ function ItemCard({ product }) {
   const quantity = cartItem ? cartItem.quantity : 0
 
   return (
-    <div className="border border-gray-300 rounded-lg p-4 w-[200px] flex flex-col items-center gap-2 shadow-md hover:shadow-2xl transition-shadow duration-300">
+    <div className="border border-gray-300 rounded-lg p-3 md:p-4 w-full sm:w-[200px] mx-auto flex flex-col items-center gap-2 shadow-md hover:shadow-2xl transition-shadow duration-300">
       <img
         src={product.image}
         alt={product.title}
-        className="w-full h-[150px] object-contain"
+        className="w-full h-[120px] md:h-[150px] object-contain"
       />
       <div className="text-xs text-gray-600 capitalize">
         {product.category}
       </div>
-      <div className="font-bold text-center">{product.title}</div>
+      <div className="font-bold text-center text-sm md:text-base line-clamp-2">{product.title}</div>
       <div className="text-green-700 font-bold mt-auto">
         ${product.price.toFixed(2)}
       </div>
